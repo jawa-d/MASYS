@@ -142,6 +142,14 @@
       border-radius: 14px;
       padding: 11px 12px;
       overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .stat:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(18, 28, 32, 0.08);
+      border-color: #c8c1b0;
     }
 
     .stat::before {
@@ -284,6 +292,14 @@
       display: grid;
       align-content: center;
       gap: 4px;
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .op-card:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 16px rgba(20, 28, 31, 0.08);
+      border-color: #cbc3b2;
     }
 
     .op-card .op-label {
@@ -384,6 +400,269 @@
       font-weight: 800;
     }
 
+    .timeline-box {
+      border: 1px solid #ddd7c9;
+      background: #faf7f0;
+      border-radius: 11px;
+      padding: 8px 9px;
+      display: grid;
+      gap: 7px;
+    }
+
+    .timeline-head {
+      font-size: 0.75rem;
+      color: #67757a;
+      font-weight: 800;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 8px;
+      position: relative;
+      margin-inline-start: 4px;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-inline-start: 24px;
+      min-height: 24px;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      inset-inline-start: 7px;
+      top: 4px;
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: #167a70;
+      box-shadow: 0 0 0 3px #dff3ef;
+    }
+
+    .timeline-item::after {
+      content: "";
+      position: absolute;
+      inset-inline-start: 11px;
+      top: 15px;
+      width: 1px;
+      bottom: -10px;
+      background: #c8d2d0;
+    }
+
+    .timeline-item:last-child::after {
+      display: none;
+    }
+
+    .timeline-title {
+      font-size: 0.76rem;
+      font-weight: 800;
+      color: #233339;
+    }
+
+    .timeline-time {
+      font-size: 0.72rem;
+      color: #6d7b81;
+      margin-top: 1px;
+    }
+
+    .feed-box {
+      border: 1px solid #ddd8cb;
+      border-radius: 11px;
+      padding: 8px 9px;
+      background: #fffdf9;
+      display: grid;
+      gap: 8px;
+    }
+
+    .feed-head {
+      font-size: 0.75rem;
+      color: #66757b;
+      font-weight: 800;
+    }
+
+    .feed-list {
+      display: grid;
+      gap: 6px;
+      max-height: 120px;
+      overflow: auto;
+      padding-inline-end: 4px;
+    }
+
+    .feed-item {
+      border: 1px solid #e2dccf;
+      background: #f8f5ee;
+      border-radius: 8px;
+      padding: 6px 7px;
+      display: grid;
+      gap: 2px;
+    }
+
+    .feed-text {
+      font-size: 0.76rem;
+      color: #223237;
+      font-weight: 700;
+      line-height: 1.6;
+      word-break: break-word;
+    }
+
+    .feed-time {
+      font-size: 0.7rem;
+      color: #738288;
+    }
+
+    .feed-actions {
+      display: flex;
+      gap: 6px;
+      margin-top: 3px;
+    }
+
+    .feed-mini {
+      font-size: 0.72rem;
+      padding: 4px 8px;
+      border-radius: 7px;
+      font-weight: 700;
+    }
+
+    .feed-empty {
+      font-size: 0.73rem;
+      color: #76858a;
+      padding: 2px 1px;
+    }
+
+    .feed-add {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .feed-input {
+      flex: 1;
+      min-width: 0;
+      padding: 8px 9px;
+      border-radius: 9px;
+      border: 1px solid #d3ccbe;
+      background: #fff;
+      font-size: 0.78rem;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(19, 26, 29, 0.52);
+      backdrop-filter: blur(3px);
+      z-index: 1200;
+      padding: 16px;
+    }
+
+    .modal.open {
+      display: flex;
+    }
+
+    .modal-card {
+      width: min(740px, 100%);
+      max-height: 88vh;
+      overflow: auto;
+      background: #fffdf9;
+      border: 1px solid #d7d1c4;
+      border-radius: 16px;
+      box-shadow: 0 28px 50px rgba(16, 22, 24, 0.32);
+      padding: 14px;
+      display: grid;
+      gap: 10px;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .modal-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .modal-title {
+      margin: 0;
+      font-size: 1.08rem;
+      font-weight: 800;
+      color: #223238;
+      word-break: break-word;
+    }
+
+    .modal-close {
+      background: #f2eee4;
+      color: #2b3a40;
+      padding: 8px 10px;
+      border-radius: 10px;
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+
+    .modal-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .modal-field {
+      display: grid;
+      gap: 5px;
+    }
+
+    .modal-field label {
+      font-size: 0.74rem;
+      color: #66757b;
+      font-weight: 800;
+    }
+
+    .modal-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .stats-cases {
+      display: grid;
+      gap: 8px;
+      max-height: 58vh;
+      overflow: auto;
+      padding-inline-end: 4px;
+    }
+
+    .case-item {
+      border: 1px solid #ddd7c9;
+      border-radius: 10px;
+      background: #fbf9f3;
+      padding: 8px 9px;
+      display: grid;
+      gap: 6px;
+    }
+
+    .case-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .case-name {
+      font-size: 0.87rem;
+      font-weight: 800;
+      color: #24353a;
+      word-break: break-word;
+    }
+
+    .case-meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+      font-size: 0.76rem;
+      color: #67767b;
+      font-weight: 700;
+    }
+
     .amount {
       font-weight: 800;
       color: #1d2e33;
@@ -445,24 +724,76 @@
       .toolbar { grid-template-columns: 1fr; }
       .stats { grid-template-columns: 1fr 1fr; }
       .ops-dashboard { grid-template-columns: repeat(3, minmax(120px, 1fr)); }
+      .record-meta { grid-template-columns: 1fr; }
+      .modal-card { width: min(820px, 100%); }
     }
 
-    @media (max-width: 560px) {
-      .container { width: min(1150px, 96%); margin-top: 16px; }
-      .hero { padding: 16px; }
+    @media (max-width: 760px) {
+      .container { width: 97%; margin-top: 14px; gap: 14px; }
+      .panel { border-radius: 16px; }
+      .hero { padding: 14px; gap: 10px; }
+      .hero h1 { font-size: 1.1rem; line-height: 1.45; }
+      .hero p { font-size: 0.85rem; line-height: 1.7; }
+      .title-chip { font-size: 0.72rem; padding: 4px 10px; }
+      .stats { gap: 8px; }
+      .stat { padding: 9px 10px; }
+      .stat .value { font-size: 1rem; }
+      .section-head { padding: 10px 12px 0; }
+      .section-head h2 { font-size: 0.92rem; }
+      .section-head p { font-size: 0.76rem; }
       .form-box { padding: 10px; }
-      .section-head { padding: 12px 12px 0; }
-      form { grid-template-columns: 1fr; padding: 10px; }
-      .stats { grid-template-columns: 1fr; }
+      form { grid-template-columns: 1fr; padding: 10px; gap: 8px; }
+      .actions { width: 100%; }
+      .actions button { flex: 1; }
       .toolbar { padding: 0 10px 10px; }
-      .row-actions { min-width: 190px; }
       .ops-dashboard {
         margin: 0 10px 10px;
         grid-template-columns: 1fr 1fr;
+        gap: 7px;
       }
+      .op-card { min-height: 62px; padding: 8px; }
       .records-wrap { padding: 10px; }
-      .records-grid { grid-template-columns: 1fr; }
-      .record-meta { grid-template-columns: 1fr; }
+      .records-grid { grid-template-columns: 1fr; gap: 10px; }
+      .record-card { padding: 10px; border-radius: 12px; }
+      .timeline-box, .feed-box { padding: 8px; }
+      .feed-list { max-height: 100px; }
+      .feed-add { flex-direction: column; align-items: stretch; }
+      .feed-add .feed-input { width: 100%; }
+      .feed-add button { width: 100%; }
+      .row-actions { min-width: 0; }
+      .row-actions .mini { flex: 1; text-align: center; }
+      .modal { padding: 10px; align-items: flex-end; }
+      .modal-card {
+        width: 100%;
+        max-height: 92vh;
+        border-radius: 14px 14px 0 0;
+        padding: 10px;
+      }
+      .modal-title { font-size: 0.96rem; }
+      .modal-form { grid-template-columns: 1fr; }
+      .modal-actions { display: grid; grid-template-columns: 1fr; }
+      .case-meta { grid-template-columns: 1fr; gap: 4px; }
+    }
+
+    @media (max-width: 560px) {
+      .stats { grid-template-columns: 1fr; }
+      .ops-dashboard { grid-template-columns: 1fr; }
+      .modal-close { padding: 7px 9px; font-size: 0.75rem; }
+      .mini { font-size: 0.75rem; padding: 7px 8px; }
+      .feed-text { font-size: 0.74rem; }
+      .op-card .op-label { font-size: 0.72rem; }
+      .op-card .op-value { font-size: 0.92rem; }
+    }
+
+    @media (max-width: 420px) {
+      body { font-size: 14px; }
+      .hero h1 { font-size: 1rem; }
+      .title-chip { font-size: 0.69rem; padding: 3px 8px; }
+      input, select { padding: 10px; font-size: 0.86rem; }
+      .record-name { font-size: 0.88rem; }
+      .badge { font-size: 0.69rem; padding: 5px 8px; }
+      .modal { padding: 0; }
+      .modal-card { border-radius: 12px 12px 0 0; }
     }
   </style>
 </head>
@@ -475,11 +806,11 @@
         <h1>نظام احترافي لمتابعة الشركات والعملاء</h1>
         <p>إدارة اسم الشركة/العميل، المبلغ المطلوب، وحالة التسديد حتى الإغلاق النهائي.</p>
       </div>
-      <div class="stats">
-        <div class="stat"><div class="value" id="countAll">0</div><div class="label">إجمالي السجلات</div></div>
-        <div class="stat"><div class="value" id="sumAll">0</div><div class="label">إجمالي المبالغ</div></div>
-        <div class="stat"><div class="value" id="countUnpaid">0</div><div class="label">Waiting</div></div>
-        <div class="stat"><div class="value" id="countDone">0</div><div class="label">DONE</div></div>
+      <div class="stats" id="statsCards">
+        <div class="stat" data-stat-card="all"><div class="value" id="countAll">0</div><div class="label">إجمالي السجلات</div></div>
+        <div class="stat" data-stat-card="amount"><div class="value" id="sumAll">0</div><div class="label">إجمالي المبالغ</div></div>
+        <div class="stat" data-stat-card="waiting"><div class="value" id="countUnpaid">0</div><div class="label">Waiting</div></div>
+        <div class="stat" data-stat-card="done"><div class="value" id="countDone">0</div><div class="label">DONE</div></div>
       </div>
     </section>
 
@@ -520,19 +851,74 @@
         <h2>قائمة السجلات</h2>
         <p>يمكنك البحث، التعديل، الحذف، أو نقل الحالة للمرحلة التالية.</p>
       </div>
-      <div class="ops-dashboard">
-        <div class="op-card"><div class="op-label">Draft</div><div class="op-value" id="opDraft">0</div></div>
-        <div class="op-card"><div class="op-label">Waiting</div><div class="op-value" id="opWaiting">0</div></div>
-        <div class="op-card"><div class="op-label">Payment Made</div><div class="op-value" id="opPaid">0</div></div>
-        <div class="op-card"><div class="op-label">DONE</div><div class="op-value" id="opDone">0</div></div>
-        <div class="op-card"><div class="op-label">Pending Amount</div><div class="op-value" id="opPendingAmount">0</div></div>
-        <div class="op-card primary"><div class="op-label">Completion</div><div class="op-value" id="opCompletion">0%</div></div>
+      <div class="ops-dashboard" id="opsCards">
+        <div class="op-card" data-op-card="draft"><div class="op-label">Draft</div><div class="op-value" id="opDraft">0</div></div>
+        <div class="op-card" data-op-card="waiting"><div class="op-label">Waiting</div><div class="op-value" id="opWaiting">0</div></div>
+        <div class="op-card" data-op-card="paid"><div class="op-label">Payment Made</div><div class="op-value" id="opPaid">0</div></div>
+        <div class="op-card" data-op-card="done"><div class="op-label">DONE</div><div class="op-value" id="opDone">0</div></div>
+        <div class="op-card" data-op-card="pending"><div class="op-label">Pending Amount</div><div class="op-value" id="opPendingAmount">0</div></div>
+        <div class="op-card primary" data-op-card="completion"><div class="op-label">Completion</div><div class="op-value" id="opCompletion">0%</div></div>
       </div>
       <div class="records-wrap">
         <div class="records-grid" id="rows"></div>
       </div>
     </section>
   </main>
+  <div class="modal" id="recordModal" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3 class="modal-title" id="modalName">تفاصيل العملية</h3>
+        <button type="button" class="modal-close" id="modalClose">إغلاق</button>
+      </div>
+      <div class="modal-form">
+        <div class="modal-field">
+          <label for="modalInputName">اسم الشركة / العميل</label>
+          <input id="modalInputName" />
+        </div>
+        <div class="modal-field">
+          <label for="modalInputStatus">الحالة</label>
+          <select id="modalInputStatus"></select>
+        </div>
+        <div class="modal-field">
+          <label for="modalInputAmount">المبلغ المطلوب</label>
+          <input id="modalInputAmount" type="number" min="0" step="0.01" />
+        </div>
+        <div class="modal-field">
+          <label for="modalInputDate">تاريخ الإدخال</label>
+          <input id="modalInputDate" type="date" />
+        </div>
+      </div>
+      <div class="record-top">
+        <div id="modalStatus"></div>
+      </div>
+      <div class="timeline-box">
+        <div class="timeline-head">سجل تحويلات الحالات</div>
+        <div class="timeline" id="modalTimeline"></div>
+      </div>
+      <div class="feed-box">
+        <div class="feed-head">جميع الملاحظات</div>
+        <div class="feed-list" id="modalFeed" style="max-height: 220px;"></div>
+        <div class="feed-add">
+          <input class="feed-input" id="modalFeedInput" placeholder="اكتب ملاحظة لهذه العملية..." />
+          <button class="mini btn-secondary" id="modalAddFeedBtn" type="button">إضافة ملاحظة</button>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="mini btn-secondary" id="modalSaveBtn" type="button">حفظ التعديلات</button>
+        <button class="mini btn-secondary" id="modalNextBtn" type="button">تقدّم للحالة التالية</button>
+        <button class="mini mini-danger" id="modalDeleteBtn" type="button">حذف السجل</button>
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="statsModal" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3 class="modal-title" id="statsModalTitle">تفاصيل الكيسات</h3>
+        <button type="button" class="modal-close" id="statsModalClose">إغلاق</button>
+      </div>
+      <div class="stats-cases" id="statsCases"></div>
+    </div>
+  </div>
 
   <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
@@ -567,7 +953,28 @@
       cancelEdit: document.getElementById("cancelEdit"),
       search: document.getElementById("search"),
       filterStatus: document.getElementById("filterStatus"),
+      statsCards: document.getElementById("statsCards"),
+      opsCards: document.getElementById("opsCards"),
       syncStatus: document.getElementById("syncStatus"),
+      recordModal: document.getElementById("recordModal"),
+      modalClose: document.getElementById("modalClose"),
+      modalName: document.getElementById("modalName"),
+      modalStatus: document.getElementById("modalStatus"),
+      modalInputName: document.getElementById("modalInputName"),
+      modalInputAmount: document.getElementById("modalInputAmount"),
+      modalInputStatus: document.getElementById("modalInputStatus"),
+      modalInputDate: document.getElementById("modalInputDate"),
+      modalTimeline: document.getElementById("modalTimeline"),
+      modalFeed: document.getElementById("modalFeed"),
+      modalFeedInput: document.getElementById("modalFeedInput"),
+      modalAddFeedBtn: document.getElementById("modalAddFeedBtn"),
+      modalSaveBtn: document.getElementById("modalSaveBtn"),
+      modalNextBtn: document.getElementById("modalNextBtn"),
+      modalDeleteBtn: document.getElementById("modalDeleteBtn"),
+      statsModal: document.getElementById("statsModal"),
+      statsModalClose: document.getElementById("statsModalClose"),
+      statsModalTitle: document.getElementById("statsModalTitle"),
+      statsCases: document.getElementById("statsCases"),
       countAll: document.getElementById("countAll"),
       sumAll: document.getElementById("sumAll"),
       countUnpaid: document.getElementById("countUnpaid"),
@@ -586,6 +993,58 @@
     let db = null;
     let unsubscribeSnapshot = null;
     let migrationInProgress = false;
+    let currentModalRecordId = null;
+
+    function nowIso() {
+      return new Date().toISOString();
+    }
+
+    function formatDateTime(value) {
+      if (!value) return "-";
+      const d = new Date(value);
+      if (Number.isNaN(d.getTime())) return "-";
+      return d.toLocaleString("en-GB", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+    }
+
+    function normalizeFeedList(feed) {
+      if (!Array.isArray(feed)) return [];
+      return feed
+        .map((item) => ({
+          id: String(item?.id || crypto.randomUUID()),
+          text: String(item?.text || "").trim(),
+          at: String(item?.at || nowIso()),
+          status: Number(item?.status ?? 0)
+        }))
+        .filter((item) => item.text)
+        .slice(-20);
+    }
+
+    function normalizeTimelineList(timeline, fallbackStatus) {
+      if (!Array.isArray(timeline) || !timeline.length) {
+        return [{
+          id: crypto.randomUUID(),
+          from: -1,
+          to: Number(fallbackStatus || 0),
+          at: nowIso(),
+          label: "Created"
+        }];
+      }
+      return timeline
+        .map((item) => ({
+          id: String(item?.id || crypto.randomUUID()),
+          from: Number(item?.from ?? -1),
+          to: Number(item?.to ?? 0),
+          at: String(item?.at || nowIso()),
+          label: String(item?.label || "")
+        }))
+        .slice(-25);
+    }
 
     function hasFirebaseConfig() {
       return Object.values(FIREBASE_CONFIG).every((value) => {
@@ -628,7 +1087,9 @@
         name: String(item.name || "").trim(),
         amount: Number(item.amount || 0),
         status: Number(item.status || 0),
-        date: String(item.date || "")
+        date: String(item.date || ""),
+        feed: normalizeFeedList(item.feed),
+        statusTimeline: normalizeTimelineList(item.statusTimeline, item.status)
       };
     }
 
@@ -664,6 +1125,8 @@
             amount: clean.amount,
             status: clean.status,
             date: clean.date,
+            feed: clean.feed,
+            statusTimeline: clean.statusTimeline,
             createdAt: firebase.firestore.FieldValue.serverTimestamp(),
             updatedAt: firebase.firestore.FieldValue.serverTimestamp()
           });
@@ -701,9 +1164,11 @@
     }
 
     function renderStatusSelectors() {
-      refs.status.innerHTML = STATUSES
+      const options = STATUSES
         .map((s, i) => `<option value="${i}">${s}</option>`)
         .join("");
+      refs.status.innerHTML = options;
+      refs.modalInputStatus.innerHTML = options;
       refs.filterStatus.innerHTML =
         `<option value="all">كل الحالات</option>` +
         STATUSES.map((s, i) => `<option value="${i}">${s}</option>`).join("");
@@ -722,6 +1187,140 @@
       const idx = Number(statusIndex) || 0;
       const text = STATUSES[idx] || STATUSES[0];
       return `<span class="badge s${idx}">${text}</span>`;
+    }
+
+    function transitionLabel(item) {
+      const fromText = Number(item.from) >= 0 ? (STATUSES[Number(item.from)] || "Unknown") : "Start";
+      const toText = STATUSES[Number(item.to)] || "Unknown";
+      return item.label ? item.label : `${fromText} -> ${toText}`;
+    }
+
+    function renderTimeline(timeline, limit = 5) {
+      const base = Array.isArray(timeline) ? [...timeline].reverse() : [];
+      const list = Number(limit) > 0 ? base.slice(0, limit) : base;
+      if (!list.length) return `<div class="feed-empty">لا توجد تحويلات بعد.</div>`;
+      return list
+        .map((item) => `
+          <div class="timeline-item">
+            <div class="timeline-title">${escapeHtml(transitionLabel(item))}</div>
+            <div class="timeline-time">${formatDateTime(item.at)}</div>
+          </div>
+        `)
+        .join("");
+    }
+
+    function renderFeed(record, limit = 5) {
+      const feed = Array.isArray(record?.feed) ? record.feed : [];
+      const base = Array.isArray(feed) ? [...feed].reverse() : [];
+      const list = Number(limit) > 0 ? base.slice(0, limit) : base;
+      if (!list.length) return `<div class="feed-empty">لا توجد ملاحظات حالياً.</div>`;
+      return list
+        .map((item) => `
+          <div class="feed-item">
+            <div class="feed-text">${escapeHtml(item.text)}</div>
+            <div class="feed-time">الحالة عند الإضافة: ${escapeHtml(STATUSES[Number(item.status)] || "Unknown")}</div>
+            <div class="feed-time">${formatDateTime(item.at)}</div>
+            <div class="feed-actions">
+              <button class="feed-mini btn-secondary" data-action="edit-feed" data-id="${record.id}" data-note-id="${item.id}" type="button">تعديل</button>
+              <button class="feed-mini mini-danger" data-action="delete-feed" data-id="${record.id}" data-note-id="${item.id}" type="button">حذف</button>
+            </div>
+          </div>
+        `)
+        .join("");
+    }
+
+    function openRecordModal(record) {
+      if (!record) return;
+      currentModalRecordId = record.id;
+      refs.modalName.textContent = record.name || "تفاصيل العملية";
+      refs.modalStatus.innerHTML = statusBadge(record.status);
+      refs.modalInputName.value = record.name || "";
+      refs.modalInputAmount.value = Number(record.amount || 0);
+      refs.modalInputStatus.value = String(Number(record.status || 0));
+      refs.modalInputDate.value = record.date || "";
+      refs.modalTimeline.innerHTML = renderTimeline(record.statusTimeline, 0);
+      refs.modalFeed.innerHTML = renderFeed(record, 0);
+      refs.modalFeedInput.value = "";
+      refs.recordModal.classList.add("open");
+      refs.recordModal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeRecordModal() {
+      refs.recordModal.classList.remove("open");
+      refs.recordModal.setAttribute("aria-hidden", "true");
+      currentModalRecordId = null;
+      document.body.style.overflow = "";
+    }
+
+    function getCurrentModalRecord() {
+      if (!currentModalRecordId) return null;
+      return records.find((r) => r.id === currentModalRecordId) || null;
+    }
+
+    function refreshModalStatusPreview() {
+      const selected = Number(refs.modalInputStatus.value || 0);
+      refs.modalStatus.innerHTML = statusBadge(selected);
+    }
+
+    function getStatCases(type) {
+      if (type === "draft") return records.filter((r) => Number(r.status) === 0);
+      if (type === "waiting") return records.filter((r) => Number(r.status) === 1);
+      if (type === "paid") return records.filter((r) => Number(r.status) === 2);
+      if (type === "done") return records.filter((r) => Number(r.status) === 3);
+      if (type === "pending") {
+        return records
+          .filter((r) => Number(r.status) !== 3)
+          .sort((a, b) => Number(b.amount || 0) - Number(a.amount || 0));
+      }
+      if (type === "completion") return records.filter((r) => Number(r.status) === 3);
+      if (type === "amount") return [...records].sort((a, b) => Number(b.amount || 0) - Number(a.amount || 0));
+      return records;
+    }
+
+    function getStatTitle(type) {
+      if (type === "draft") return "كيسات حالة Draft";
+      if (type === "waiting") return "كيسات حالة Waiting";
+      if (type === "paid") return "كيسات حالة Payment Made";
+      if (type === "done") return "كيسات حالة DONE";
+      if (type === "pending") return "الكيسات المعلقة (غير DONE)";
+      if (type === "completion") return "الكيسات المكتملة (Completion)";
+      if (type === "amount") return "كل الكيسات حسب أعلى مبلغ";
+      return "كل الكيسات (إجمالي السجلات)";
+    }
+
+    function renderCaseItems(list) {
+      if (!list.length) return `<div class="empty">لا توجد كيسات في هذا القسم.</div>`;
+      return list
+        .map((r) => `
+          <article class="case-item" data-case-open="${r.id}">
+            <div class="case-top">
+              <div class="case-name">${escapeHtml(r.name)}</div>
+              ${statusBadge(r.status)}
+            </div>
+            <div class="case-meta">
+              <div>المبلغ: ${money(Number(r.amount))}</div>
+              <div>التاريخ: ${escapeHtml(r.date || "-")}</div>
+              <div>الملاحظات: ${Array.isArray(r.feed) ? r.feed.length : 0}</div>
+            </div>
+          </article>
+        `)
+        .join("");
+    }
+
+    function openStatsModal(type) {
+      const list = getStatCases(type);
+      refs.statsModalTitle.textContent = `${getStatTitle(type)} (${list.length})`;
+      refs.statsCases.innerHTML = renderCaseItems(list);
+      refs.statsModal.classList.add("open");
+      refs.statsModal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeStatsModal() {
+      refs.statsModal.classList.remove("open");
+      refs.statsModal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
     }
 
     function filteredRecords() {
@@ -769,7 +1368,7 @@
       refs.rows.innerHTML = list
         .map((r) => {
           return `
-            <article class="record-card">
+            <article class="record-card" data-record-id="${r.id}">
               <div class="record-top">
                 <h3 class="record-name">${escapeHtml(r.name)}</h3>
                 ${statusBadge(r.status)}
@@ -782,6 +1381,18 @@
                 <div class="meta-box">
                   <span class="meta-label">تاريخ الإدخال</span>
                   <span class="meta-value">${r.date || "-"}</span>
+                </div>
+              </div>
+              <div class="timeline-box">
+                <div class="timeline-head">تحويلات الحالات</div>
+                <div class="timeline">${renderTimeline(r.statusTimeline)}</div>
+              </div>
+              <div class="feed-box">
+                <div class="feed-head">Feed / ملاحظات العملية</div>
+                <div class="feed-list">${renderFeed(r)}</div>
+                <div class="feed-add">
+                  <input class="feed-input" data-feed-input-id="${r.id}" placeholder="اكتب ملاحظة لهذه العملية..." />
+                  <button class="mini btn-secondary" data-action="add-feed" data-id="${r.id}">إضافة ملاحظة</button>
                 </div>
               </div>
               <div class="row-actions">
@@ -808,18 +1419,35 @@
       renderStats();
       renderOpsDashboard();
       renderTable();
+      if (refs.recordModal.classList.contains("open")) {
+        const current = getCurrentModalRecord();
+        if (current) openRecordModal(current);
+      }
     }
 
     async function createRecord(payload) {
+      const timelineEntry = {
+        id: crypto.randomUUID(),
+        from: -1,
+        to: Number(payload.status || 0),
+        at: nowIso(),
+        label: "Created"
+      };
+      const fullPayload = {
+        ...payload,
+        feed: [],
+        statusTimeline: [timelineEntry]
+      };
+
       if (usingFirebase && db) {
         await db.collection(FIREBASE_COLLECTION).add({
-          ...payload,
+          ...fullPayload,
           createdAt: firebase.firestore.FieldValue.serverTimestamp(),
           updatedAt: firebase.firestore.FieldValue.serverTimestamp()
         });
         return;
       }
-      records.unshift({ id: crypto.randomUUID(), ...payload });
+      records.unshift({ id: crypto.randomUUID(), ...fullPayload });
       saveLocalRecords();
       renderAll();
     }
@@ -848,15 +1476,87 @@
     }
 
     async function advanceStatus(record) {
+      const currentStatus = Number(record.status || 0);
       const nextStatus = Math.min(Number(record.status) + 1, STATUSES.length - 1);
+      const timelineEntry = {
+        id: crypto.randomUUID(),
+        from: currentStatus,
+        to: nextStatus,
+        at: nowIso(),
+        label: "Status Changed"
+      };
+      const updatedTimeline = [...(record.statusTimeline || []), timelineEntry].slice(-25);
+
       if (usingFirebase && db) {
         await db.collection(FIREBASE_COLLECTION).doc(record.id).update({
           status: nextStatus,
+          statusTimeline: updatedTimeline,
           updatedAt: firebase.firestore.FieldValue.serverTimestamp()
         });
         return;
       }
       record.status = nextStatus;
+      record.statusTimeline = updatedTimeline;
+      saveLocalRecords();
+      renderAll();
+    }
+
+    async function addFeedNote(record, noteText) {
+      const cleanText = String(noteText || "").trim();
+      if (!cleanText) return;
+
+      const note = {
+        id: crypto.randomUUID(),
+        text: cleanText,
+        at: nowIso(),
+        status: Number(record.status || 0)
+      };
+      const updatedFeed = [...(record.feed || []), note].slice(-20);
+
+      if (usingFirebase && db) {
+        await db.collection(FIREBASE_COLLECTION).doc(record.id).update({
+          feed: updatedFeed,
+          updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+        return;
+      }
+
+      record.feed = updatedFeed;
+      saveLocalRecords();
+      renderAll();
+    }
+
+    async function editFeedNote(record, noteId, nextText) {
+      const cleanText = String(nextText || "").trim();
+      if (!cleanText) return;
+      const updatedFeed = (record.feed || []).map((item) => {
+        if (item.id !== noteId) return item;
+        return { ...item, text: cleanText };
+      });
+
+      if (usingFirebase && db) {
+        await db.collection(FIREBASE_COLLECTION).doc(record.id).update({
+          feed: updatedFeed,
+          updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+        return;
+      }
+      record.feed = updatedFeed;
+      saveLocalRecords();
+      renderAll();
+    }
+
+    async function deleteFeedNote(record, noteId) {
+      const updatedFeed = (record.feed || []).filter((item) => item.id !== noteId);
+
+      if (usingFirebase && db) {
+        await db.collection(FIREBASE_COLLECTION).doc(record.id).update({
+          feed: updatedFeed,
+          updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+        return;
+      }
+      record.feed = updatedFeed;
       saveLocalRecords();
       renderAll();
     }
@@ -874,6 +1574,19 @@
 
       try {
         if (editId) {
+          const oldRecord = records.find((r) => r.id === editId);
+          const oldStatus = Number(oldRecord?.status ?? payload.status);
+          const statusChanged = oldStatus !== Number(payload.status);
+          if (statusChanged) {
+            const timelineEntry = {
+              id: crypto.randomUUID(),
+              from: oldStatus,
+              to: Number(payload.status),
+              at: nowIso(),
+              label: "Status Edited"
+            };
+            payload.statusTimeline = [...(oldRecord?.statusTimeline || []), timelineEntry].slice(-25);
+          }
           await updateRecord(editId, payload);
         } else {
           await createRecord(payload);
@@ -891,7 +1604,14 @@
 
     refs.rows.addEventListener("click", async (e) => {
       const btn = e.target.closest("button");
-      if (!btn) return;
+      if (!btn) {
+        const card = e.target.closest(".record-card");
+        if (!card) return;
+        const id = card.dataset.recordId;
+        const selected = records.find((r) => r.id === id);
+        openRecordModal(selected);
+        return;
+      }
       const action = btn.dataset.action;
       const id = btn.dataset.id;
       const target = records.find((r) => r.id === id);
@@ -910,6 +1630,29 @@
       }
 
       try {
+        if (action === "edit-feed") {
+          const noteId = btn.dataset.noteId;
+          const note = (target.feed || []).find((n) => n.id === noteId);
+          if (!note) return;
+          const nextText = prompt("تعديل الملاحظة:", note.text);
+          if (nextText === null) return;
+          await editFeedNote(target, noteId, nextText);
+        }
+
+        if (action === "delete-feed") {
+          const noteId = btn.dataset.noteId;
+          const ok = confirm("هل تريد حذف هذه الملاحظة؟");
+          if (!ok) return;
+          await deleteFeedNote(target, noteId);
+        }
+
+        if (action === "add-feed") {
+          const input = refs.rows.querySelector(`[data-feed-input-id="${id}"]`);
+          const noteText = input ? input.value : "";
+          await addFeedNote(target, noteText);
+          if (input) input.value = "";
+        }
+
         if (action === "delete") {
           const ok = confirm(`هل تريد حذف سجل: ${target.name} ؟`);
           if (!ok) return;
@@ -923,6 +1666,138 @@
         console.error("Operation failed:", error);
         alert("العملية فشلت. تحقق من اتصال Firebase أو صلاحيات Firestore.");
       }
+    });
+
+    refs.modalClose.addEventListener("click", closeRecordModal);
+    refs.recordModal.addEventListener("click", (e) => {
+      if (e.target === refs.recordModal) closeRecordModal();
+    });
+    refs.modalAddFeedBtn.addEventListener("click", async () => {
+      const record = getCurrentModalRecord();
+      if (!record) return;
+      const noteText = refs.modalFeedInput.value;
+      try {
+        await addFeedNote(record, noteText);
+        refs.modalFeedInput.value = "";
+      } catch (error) {
+        console.error("Modal add feed failed:", error);
+        alert("فشل إضافة الملاحظة.");
+      }
+    });
+    refs.modalFeed.addEventListener("click", async (e) => {
+      const btn = e.target.closest("button");
+      if (!btn) return;
+      const action = btn.dataset.action;
+      const record = getCurrentModalRecord();
+      if (!record) return;
+      const noteId = btn.dataset.noteId;
+      if (!noteId) return;
+
+      try {
+        if (action === "edit-feed") {
+          const note = (record.feed || []).find((n) => n.id === noteId);
+          if (!note) return;
+          const nextText = prompt("تعديل الملاحظة:", note.text);
+          if (nextText === null) return;
+          await editFeedNote(record, noteId, nextText);
+        }
+
+        if (action === "delete-feed") {
+          const ok = confirm("هل تريد حذف هذه الملاحظة؟");
+          if (!ok) return;
+          await deleteFeedNote(record, noteId);
+        }
+      } catch (error) {
+        console.error("Modal feed operation failed:", error);
+        alert("فشلت العملية على الملاحظة.");
+      }
+    });
+    refs.modalSaveBtn.addEventListener("click", async () => {
+      const record = getCurrentModalRecord();
+      if (!record) return;
+
+      const payload = {
+        name: refs.modalInputName.value.trim(),
+        amount: Number(refs.modalInputAmount.value),
+        status: Number(refs.modalInputStatus.value),
+        date: refs.modalInputDate.value
+      };
+      if (!payload.name || Number.isNaN(payload.amount) || payload.amount < 0 || !payload.date) {
+        alert("اكمل بيانات التعديل بشكل صحيح.");
+        return;
+      }
+
+      try {
+        const oldStatus = Number(record.status ?? payload.status);
+        if (oldStatus !== Number(payload.status)) {
+          const timelineEntry = {
+            id: crypto.randomUUID(),
+            from: oldStatus,
+            to: Number(payload.status),
+            at: nowIso(),
+            label: "Status Edited (Modal)"
+          };
+          payload.statusTimeline = [...(record.statusTimeline || []), timelineEntry].slice(-25);
+        }
+        await updateRecord(record.id, payload);
+      } catch (error) {
+        console.error("Modal save failed:", error);
+        alert("فشل حفظ التعديلات.");
+      }
+    });
+    refs.modalNextBtn.addEventListener("click", async () => {
+      const record = getCurrentModalRecord();
+      if (!record) return;
+      try {
+        await advanceStatus(record);
+      } catch (error) {
+        console.error("Modal next status failed:", error);
+        alert("فشل تحويل الحالة.");
+      }
+    });
+    refs.modalDeleteBtn.addEventListener("click", async () => {
+      const record = getCurrentModalRecord();
+      if (!record) return;
+      const ok = confirm(`هل تريد حذف سجل: ${record.name} ؟`);
+      if (!ok) return;
+      try {
+        await deleteRecord(record.id);
+        closeRecordModal();
+      } catch (error) {
+        console.error("Modal delete failed:", error);
+        alert("فشل حذف السجل.");
+      }
+    });
+    refs.modalInputStatus.addEventListener("change", refreshModalStatusPreview);
+    refs.statsCards.addEventListener("click", (e) => {
+      const card = e.target.closest(".stat");
+      if (!card) return;
+      const type = card.dataset.statCard || "all";
+      openStatsModal(type);
+    });
+    refs.opsCards.addEventListener("click", (e) => {
+      const card = e.target.closest(".op-card");
+      if (!card) return;
+      const type = card.dataset.opCard || "all";
+      openStatsModal(type);
+    });
+    refs.statsModalClose.addEventListener("click", closeStatsModal);
+    refs.statsModal.addEventListener("click", (e) => {
+      if (e.target === refs.statsModal) closeStatsModal();
+    });
+    refs.statsCases.addEventListener("click", (e) => {
+      const item = e.target.closest("[data-case-open]");
+      if (!item) return;
+      const id = item.dataset.caseOpen;
+      const selected = records.find((r) => r.id === id);
+      if (!selected) return;
+      closeStatsModal();
+      openRecordModal(selected);
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key !== "Escape") return;
+      if (refs.recordModal.classList.contains("open")) closeRecordModal();
+      if (refs.statsModal.classList.contains("open")) closeStatsModal();
     });
 
     function initDataSource() {
