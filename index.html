@@ -347,6 +347,12 @@
       overflow: hidden;
     }
 
+    .record-card.locked {
+      background: #f3f2ee;
+      border-color: #d4cfbf;
+      opacity: 0.94;
+    }
+
     .record-card::before {
       content: "";
       position: absolute;
@@ -621,6 +627,17 @@
       display: flex;
       flex-wrap: wrap;
       gap: 7px;
+    }
+
+    .locked-note {
+      font-size: 0.74rem;
+      color: #8a5e00;
+      background: #fff3cd;
+      border: 1px solid #f3d58d;
+      border-radius: 8px;
+      padding: 6px 8px;
+      font-weight: 800;
+      text-align: center;
     }
 
     .stats-cases {
@@ -898,12 +915,13 @@
       <div class="feed-box">
         <div class="feed-head">جميع الملاحظات</div>
         <div class="feed-list" id="modalFeed" style="max-height: 220px;"></div>
-        <div class="feed-add">
+        <div class="feed-add" id="modalFeedAddWrap">
           <input class="feed-input" id="modalFeedInput" placeholder="اكتب ملاحظة لهذه العملية..." />
           <button class="mini btn-secondary" id="modalAddFeedBtn" type="button">إضافة ملاحظة</button>
         </div>
+        <div class="locked-note" id="modalLockedNote" hidden>الكيس مغلق (DONE) وغير قابل للتعديل.</div>
       </div>
-      <div class="modal-actions">
+      <div class="modal-actions" id="modalActionsWrap">
         <button class="mini btn-secondary" id="modalSaveBtn" type="button">حفظ التعديلات</button>
         <button class="mini btn-secondary" id="modalNextBtn" type="button">تقدّم للحالة التالية</button>
         <button class="mini mini-danger" id="modalDeleteBtn" type="button">حذف السجل</button>
@@ -966,8 +984,11 @@
       modalInputDate: document.getElementById("modalInputDate"),
       modalTimeline: document.getElementById("modalTimeline"),
       modalFeed: document.getElementById("modalFeed"),
+      modalFeedAddWrap: document.getElementById("modalFeedAddWrap"),
       modalFeedInput: document.getElementById("modalFeedInput"),
       modalAddFeedBtn: document.getElementById("modalAddFeedBtn"),
+      modalLockedNote: document.getElementById("modalLockedNote"),
+      modalActionsWrap: document.getElementById("modalActionsWrap"),
       modalSaveBtn: document.getElementById("modalSaveBtn"),
       modalNextBtn: document.getElementById("modalNextBtn"),
       modalDeleteBtn: document.getElementById("modalDeleteBtn"),
@@ -1189,6 +1210,10 @@
       return `<span class="badge s${idx}">${text}</span>`;
     }
 
+    function isLockedCase(record) {
+      return Number(record?.status) === 3;
+    }
+
     function transitionLabel(item) {
       const fromText = Number(item.from) >= 0 ? (STATUSES[Number(item.from)] || "Unknown") : "Start";
       const toText = STATUSES[Number(item.to)] || "Unknown";
@@ -1232,15 +1257,23 @@
     function openRecordModal(record) {
       if (!record) return;
       currentModalRecordId = record.id;
+      const locked = isLockedCase(record);
       refs.modalName.textContent = record.name || "تفاصيل العملية";
       refs.modalStatus.innerHTML = statusBadge(record.status);
       refs.modalInputName.value = record.name || "";
       refs.modalInputAmount.value = Number(record.amount || 0);
       refs.modalInputStatus.value = String(Number(record.status || 0));
       refs.modalInputDate.value = record.date || "";
+      refs.modalInputName.disabled = locked;
+      refs.modalInputAmount.disabled = locked;
+      refs.modalInputStatus.disabled = locked;
+      refs.modalInputDate.disabled = locked;
       refs.modalTimeline.innerHTML = renderTimeline(record.statusTimeline, 0);
       refs.modalFeed.innerHTML = renderFeed(record, 0);
       refs.modalFeedInput.value = "";
+      refs.modalFeedAddWrap.hidden = locked;
+      refs.modalActionsWrap.hidden = locked;
+      refs.modalLockedNote.hidden = !locked;
       refs.recordModal.classList.add("open");
       refs.recordModal.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
@@ -1367,8 +1400,9 @@
       }
       refs.rows.innerHTML = list
         .map((r) => {
+          const locked = isLockedCase(r);
           return `
-            <article class="record-card" data-record-id="${r.id}">
+            <article class="record-card ${locked ? "locked" : ""}" data-record-id="${r.id}">
               <div class="record-top">
                 <h3 class="record-name">${escapeHtml(r.name)}</h3>
                 ${statusBadge(r.status)}
@@ -1390,15 +1424,20 @@
               <div class="feed-box">
                 <div class="feed-head">Feed / ملاحظات العملية</div>
                 <div class="feed-list">${renderFeed(r)}</div>
-                <div class="feed-add">
+                <div class="feed-add" ${locked ? "hidden" : ""}>
                   <input class="feed-input" data-feed-input-id="${r.id}" placeholder="اكتب ملاحظة لهذه العملية..." />
                   <button class="mini btn-secondary" data-action="add-feed" data-id="${r.id}">إضافة ملاحظة</button>
                 </div>
+                ${locked ? `<div class="locked-note">الكيس مغلق (DONE) وغير قابل للتعديل.</div>` : ""}
               </div>
               <div class="row-actions">
-                <button class="mini btn-secondary" data-action="next" data-id="${r.id}">تقدّم للحالة التالية</button>
-                <button class="mini btn-secondary" data-action="edit" data-id="${r.id}">تعديل</button>
-                <button class="mini mini-danger" data-action="delete" data-id="${r.id}">حذف</button>
+                ${locked
+                  ? `<span class="locked-note">تم إغلاق الكيس - عرض فقط</span>`
+                  : `
+                    <button class="mini btn-secondary" data-action="next" data-id="${r.id}">تقدّم للحالة التالية</button>
+                    <button class="mini btn-secondary" data-action="edit" data-id="${r.id}">تعديل</button>
+                    <button class="mini mini-danger" data-action="delete" data-id="${r.id}">حذف</button>
+                  `}
               </div>
             </article>
           `;
@@ -1616,6 +1655,12 @@
       const id = btn.dataset.id;
       const target = records.find((r) => r.id === id);
       if (!target) return;
+      const locked = isLockedCase(target);
+
+      if (locked && ["edit", "next", "delete", "add-feed", "edit-feed", "delete-feed"].includes(action)) {
+        alert("هذا الكيس مغلق (DONE) وغير قابل للتعديل.");
+        return;
+      }
 
       if (action === "edit") {
         editId = id;
@@ -1675,6 +1720,10 @@
     refs.modalAddFeedBtn.addEventListener("click", async () => {
       const record = getCurrentModalRecord();
       if (!record) return;
+      if (isLockedCase(record)) {
+        alert("هذا الكيس مغلق (DONE) وغير قابل للتعديل.");
+        return;
+      }
       const noteText = refs.modalFeedInput.value;
       try {
         await addFeedNote(record, noteText);
@@ -1690,6 +1739,10 @@
       const action = btn.dataset.action;
       const record = getCurrentModalRecord();
       if (!record) return;
+      if (isLockedCase(record)) {
+        alert("هذا الكيس مغلق (DONE) وغير قابل للتعديل.");
+        return;
+      }
       const noteId = btn.dataset.noteId;
       if (!noteId) return;
 
@@ -1715,6 +1768,10 @@
     refs.modalSaveBtn.addEventListener("click", async () => {
       const record = getCurrentModalRecord();
       if (!record) return;
+      if (isLockedCase(record)) {
+        alert("هذا الكيس مغلق (DONE) وغير قابل للتعديل.");
+        return;
+      }
 
       const payload = {
         name: refs.modalInputName.value.trim(),
@@ -1748,6 +1805,10 @@
     refs.modalNextBtn.addEventListener("click", async () => {
       const record = getCurrentModalRecord();
       if (!record) return;
+      if (isLockedCase(record)) {
+        alert("هذا الكيس مغلق (DONE) وغير قابل للتعديل.");
+        return;
+      }
       try {
         await advanceStatus(record);
       } catch (error) {
@@ -1758,6 +1819,10 @@
     refs.modalDeleteBtn.addEventListener("click", async () => {
       const record = getCurrentModalRecord();
       if (!record) return;
+      if (isLockedCase(record)) {
+        alert("هذا الكيس مغلق (DONE) وغير قابل للتعديل.");
+        return;
+      }
       const ok = confirm(`هل تريد حذف سجل: ${record.name} ؟`);
       if (!ok) return;
       try {
